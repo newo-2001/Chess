@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\Input\InputHandler.cpp" />
+    <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\Game\Main.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -34,9 +36,15 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="src\Core\Rendering\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core\Events\Events.h" />
+    <ClInclude Include="src\Core\Events\EventTopic.h" />
+    <ClInclude Include="src\Core\Input\InputHandler.h" />
+    <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\Core\Rendering\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
