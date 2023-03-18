@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\Rendering\Camera.cpp" />
+    <ClCompile Include="src\Core\Rendering\Shader.cpp" />
+    <ClCompile Include="src\Core\Rendering\Scene.cpp" />
     <ClCompile Include="src\Core\Input\InputHandler.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\Game\Main.cpp" />
@@ -39,12 +42,20 @@
     <ClCompile Include="src\Core\Rendering\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core\Rendering\Camera.h" />
+    <ClInclude Include="src\Core\Rendering\Renderable.h" />
+    <ClInclude Include="src\Core\Rendering\Shader.h" />
+    <ClInclude Include="src\Core\Rendering\Scene.h" />
     <ClInclude Include="src\Core\Events\Events.h" />
     <ClInclude Include="src\Core\Events\EventTopic.h" />
     <ClInclude Include="src\Core\Input\InputHandler.h" />
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\Core\Rendering\Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\shaders\fragment.glsl" />
+    <None Include="resources\shaders\vertex.glsl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

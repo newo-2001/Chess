@@ -6,6 +6,9 @@
     <ClCompile Include="src\Core\Rendering\Window.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\Core\Input\InputHandler.cpp" />
+    <ClCompile Include="src\Core\Rendering\Scene.cpp" />
+    <ClCompile Include="src\Core\Rendering\Shader.cpp" />
+    <ClCompile Include="src\Core\Rendering\Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch.h" />
@@ -14,5 +17,13 @@
     <ClInclude Include="src\Core\Input\InputHandler.h" />
     <ClInclude Include="src\Core\Events\EventTopic.h" />
     <ClInclude Include="src\Core\Events\Events.h" />
+    <ClInclude Include="src\Core\Rendering\Scene.h" />
+    <ClInclude Include="src\Core\Rendering\Shader.h" />
+    <ClInclude Include="src\Core\Rendering\Renderable.h" />
+    <ClInclude Include="src\Core\Rendering\Camera.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\shaders\vertex.glsl" />
+    <None Include="resources\shaders\fragment.glsl" />
   </ItemGroup>
 </Project>
