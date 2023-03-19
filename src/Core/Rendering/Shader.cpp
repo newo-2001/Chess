@@ -64,7 +64,7 @@ void CompileShader(GLuint shader, GLenum shaderType)
     std::unique_ptr<GLchar[]> errorLog = std::make_unique<GLchar[]>(result);
     glGetShaderInfoLog(shader, result, NULL, errorLog.get());
 
-    throw std::runtime_error((const char*) errorLog.get());
+    throw std::runtime_error(errorLog.get());
 }
 
 void Shader::AttachShader(GLenum shaderType, const std::string& filePath)
@@ -80,7 +80,7 @@ void Shader::AttachShader(GLenum shaderType, const std::string& filePath)
     {
         CompileShader(shader, shaderType);
     }
-    catch (...)
+    catch (std::exception& e)
     {
         glDeleteShader(shader);
         std::throw_with_nested(std::runtime_error(std::format("Failed to compile shader '{}'", filePath)));
@@ -128,7 +128,7 @@ GLint Shader::GetUniformLocation(const std::string& name)
     GLint location = glGetUniformLocation(m_program, name.c_str());
     if (location == -1)
     {
-        throw std::runtime_error(std::format("Invalid uniform '{}'", name));
+        std::cout << "[WARNING] Invalid Uniform: " + name << std::endl;
     }
 
     m_uniformCache.insert({ name, location });

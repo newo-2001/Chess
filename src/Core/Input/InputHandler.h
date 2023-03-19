@@ -8,6 +8,7 @@
 class InputHandler
 {
 public:
+    InputHandler();
     bool IsKeyPressed(int key) const { return m_pressedKeys[key]; }
     bool IsButtonPressed(int button) const { return m_pressedButtons[button]; }
 

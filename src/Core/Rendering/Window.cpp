@@ -184,7 +184,8 @@ void OnMouseMoveEvent(GLFWwindow* glfwWindow, double x, double y)
     glm::vec2 current = { (float) x, (float) y };
     static glm::vec2 last = current;
     
-    glm::vec2 delta = last - current;
+    glm::vec2 delta = current - last;
+    last = current;
     window->GetInputHandler().OnMouseMoveEvent.Post({ current, delta });
 }
 

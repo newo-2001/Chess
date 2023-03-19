@@ -4,7 +4,7 @@
 #include "Shader.h"
 #include "Renderable.h"
 
-class Mesh
+class Mesh : public Renderable
 {
 public:
     Mesh(const GLfloat* const vertices, size_t vertexCount, const unsigned int* const indices, size_t indexCount);

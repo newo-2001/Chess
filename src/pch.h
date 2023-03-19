@@ -7,8 +7,6 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/ext/matrix_transform.hpp>
 
-#include <stb/stb_image.h>
-
 #include <vector>
 #include <array>
 #include <string>

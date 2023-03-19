@@ -5,5 +5,5 @@
 class Renderable
 {
 public:
-    virtual void Render(Shader& shader) = 0;
+    virtual void Render() const = 0;
 };

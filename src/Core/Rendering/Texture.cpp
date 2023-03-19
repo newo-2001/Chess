@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Texture.h"
+#include "stbi.h"
 
 Texture::Texture(const std::string& filePath, bool hasAlpha)
 {

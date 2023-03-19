@@ -19,7 +19,7 @@ int main()
     try
     {
         Game::Run();
-    } catch (std::exception error)
+    } catch (std::exception& error)
     {
         PrintException(error);
         return 1;

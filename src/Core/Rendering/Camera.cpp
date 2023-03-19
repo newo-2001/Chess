@@ -4,8 +4,8 @@
 
 Camera::Camera(glm::vec3 position, float yaw, float pitch, float fov) :
     m_position(position),
-    m_yaw(yaw),
-    m_pitch(pitch)
+    m_yaw(glm::radians(yaw)),
+    m_pitch(glm::radians(pitch))
 {
     SetFov(fov);
     RecalculateBasisVectors();
@@ -22,7 +22,7 @@ void Camera::SetFov(float fov)
     glm::ivec2 dimensions = window.GetViewportDimensions();
     float aspect = (float) dimensions.x / dimensions.y;
 
-    m_projection = glm::perspective(glm::radians(fov), aspect, 0.01f, 100.0f);
+    m_projection = glm::perspective(glm::radians(fov), aspect, 0.1f, 100.0f);
 }
 
 void Camera::RecalculateBasisVectors()

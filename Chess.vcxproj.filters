@@ -9,6 +9,18 @@
     <ClCompile Include="src\Core\Rendering\Scene.cpp" />
     <ClCompile Include="src\Core\Rendering\Shader.cpp" />
     <ClCompile Include="src\Core\Rendering\Camera.cpp" />
+    <ClCompile Include="src\Core\Rendering\Mesh.cpp" />
+    <ClCompile Include="src\Core\Rendering\Texture.cpp" />
+    <ClCompile Include="src\Core\Time.cpp" />
+    <ClCompile Include="src\Core\Rendering\Model.cpp" />
+    <ClCompile Include="src\Core\Rendering\GameObject.cpp" />
+    <ClCompile Include="src\Core\Rendering\Material.cpp" />
+    <ClCompile Include="src\Core\Rendering\Lighting\LightSource.cpp" />
+    <ClCompile Include="src\Core\Rendering\Lighting\DirectionalLight.cpp" />
+    <ClCompile Include="src\Core\Input\MovableCamera.cpp" />
+    <ClCompile Include="src\Core\Rendering\Primitives\Cube.cpp" />
+    <ClCompile Include="src\Game\Entities\Board.cpp" />
+    <ClCompile Include="src\Game\Materials.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch.h" />
@@ -21,6 +33,19 @@
     <ClInclude Include="src\Core\Rendering\Shader.h" />
     <ClInclude Include="src\Core\Rendering\Renderable.h" />
     <ClInclude Include="src\Core\Rendering\Camera.h" />
+    <ClInclude Include="src\Core\Rendering\Mesh.h" />
+    <ClInclude Include="src\Core\Rendering\Texture.h" />
+    <ClInclude Include="src\Core\Time.h" />
+    <ClInclude Include="src\Core\Rendering\Model.h" />
+    <ClInclude Include="src\Core\Rendering\GameObject.h" />
+    <ClInclude Include="src\Core\Rendering\Material.h" />
+    <ClInclude Include="src\Core\Rendering\Lighting\LightSource.h" />
+    <ClInclude Include="src\Core\Rendering\Lighting\DirectionalLight.h" />
+    <ClInclude Include="src\Core\Rendering\stbi.h" />
+    <ClInclude Include="src\Core\Input\MovableCamera.h" />
+    <ClInclude Include="src\Core\Rendering\Primitives\Cube.h" />
+    <ClInclude Include="src\Game\Entities\Board.h" />
+    <ClInclude Include="src\Game\Materials.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\vertex.glsl" />
