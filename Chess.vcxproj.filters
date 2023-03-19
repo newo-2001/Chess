@@ -21,6 +21,7 @@
     <ClCompile Include="src\Core\Rendering\Primitives\Cube.cpp" />
     <ClCompile Include="src\Game\Entities\Board.cpp" />
     <ClCompile Include="src\Game\Materials.cpp" />
+    <ClCompile Include="src\Core\Input\RotatableCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch.h" />
@@ -46,6 +47,7 @@
     <ClInclude Include="src\Core\Rendering\Primitives\Cube.h" />
     <ClInclude Include="src\Game\Entities\Board.h" />
     <ClInclude Include="src\Game\Materials.h" />
+    <ClInclude Include="src\Core\Input\RotatableCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\vertex.glsl" />

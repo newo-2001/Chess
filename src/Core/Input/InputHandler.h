@@ -17,6 +17,7 @@ public:
     EventTopic<KeyEvent> OnKeyEvent;
     EventTopic<MouseButtonEvent> OnMouseButtonEvent;
     EventTopic<MouseMoveEvent> OnMouseMoveEvent;
+    EventTopic<glm::vec2> OnMouseScrollEvent;
 private:
     std::array<bool, 1024> m_pressedKeys = { false };
     std::array<bool, 24> m_pressedButtons = { false };

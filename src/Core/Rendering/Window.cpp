@@ -189,10 +189,18 @@ void OnMouseMoveEvent(GLFWwindow* glfwWindow, double x, double y)
     window->GetInputHandler().OnMouseMoveEvent.Post({ current, delta });
 }
 
+void OnScrollEvent(GLFWwindow* glfwWindow, double x, double y)
+{
+    Window* window = (Window*) glfwGetWindowUserPointer(glfwWindow);
+    
+    window->GetInputHandler().OnMouseScrollEvent.Post(glm::vec2((float) x, (float) y));
+}
+
 void Window::RegisterEventHandlers()
 {
     glfwSetWindowSizeCallback(m_window, OnResize);
     glfwSetKeyCallback(m_window, OnKeyEvent);
     glfwSetMouseButtonCallback(m_window, OnMouseButtonEvent);
     glfwSetCursorPosCallback(m_window, OnMouseMoveEvent);
+    glfwSetScrollCallback(m_window, OnScrollEvent);
 }

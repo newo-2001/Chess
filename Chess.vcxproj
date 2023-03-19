@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\Input\RotatableCamera.cpp" />
     <ClCompile Include="src\Game\Entities\Board.cpp" />
     <ClCompile Include="src\Core\Rendering\Primitives\Cube.cpp" />
     <ClCompile Include="src\Core\Input\MovableCamera.cpp" />
@@ -54,6 +55,7 @@
     <ClCompile Include="src\Core\Rendering\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core\Input\RotatableCamera.h" />
     <ClInclude Include="src\Game\Entities\Board.h" />
     <ClInclude Include="src\Core\Rendering\Primitives\Cube.h" />
     <ClInclude Include="src\Core\Input\MovableCamera.h" />

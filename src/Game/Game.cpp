@@ -7,6 +7,7 @@
 #include <Core/Input/MovableCamera.h>
 #include <Core/Rendering/Primitives/Cube.h>
 #include "Entities/Board.h"
+#include <Core/Input/RotatableCamera.h>
 
 Window window({ 1366, 768 }, "Chess");
 Scene scene;
@@ -29,7 +30,7 @@ void Render()
 
 void Initialize()
 {
-    std::shared_ptr<Camera> camera = std::make_shared<MovableCamera>(glm::vec3(0.0f, 0.0f, -5.0f), 90.0f, 0.0f);
+    std::shared_ptr<Camera> camera = std::make_shared<RotatableCamera>(glm::vec3(0.0f, 0.0f, 0.0f), 5.0f, 90.0f);
     scene.UseCamera(camera);
 
     std::shared_ptr<Shader> shader = std::make_shared<Shader>("resources/shaders/vertex.glsl", "resources/shaders/fragment.glsl");
@@ -37,10 +38,10 @@ void Initialize()
 
     glm::vec3 white = glm::vec3(1.0f);
 
-    glm::vec3 lightPosition = glm::vec3 { 5.0, -2.0f, 1.0f };
+    glm::vec3 lightDirection = glm::vec3 { 5.0, -2.0f, 1.0f };
     std::shared_ptr<LightSource> directionalLight = std::make_shared<DirectionalLight>(
         white, glm::vec2 { 0.3f, 1.0f },
-        lightPosition
+        lightDirection
     );
 
     scene.AddLight("directionalLight", directionalLight);
@@ -54,10 +55,10 @@ void Initialize()
     std::shared_ptr<GameObject> board = std::make_shared<Board>();
     scene.AddObject(board);
 
-    glm::mat4 model = glm::translate(glm::mat4(1.0f), lightPosition);
+    /*glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3());
     std::shared_ptr<Renderable> cubeMesh = std::make_shared<Cube>();
     std::shared_ptr<GameObject> lightSource = std::make_shared<GameObject>(cubeMesh, model, plain, shiny);
-    scene.AddObject(lightSource);
+    scene.AddObject(lightSource);*/
 }
 
 void Game::Run()
