@@ -10,6 +10,7 @@ struct Material
 {
     float specularIntensity;
     float shininess;
+    vec3 color;
 };
 
 struct Light
@@ -67,5 +68,5 @@ void main()
     vec4 lightColor = CalcDirectionalLight();
     vec4 textureColor = texture(tex, TexCoord);
 
-    color = textureColor * lightColor;
+    color = vec4(material.color, 1.0) * textureColor * lightColor;
 }

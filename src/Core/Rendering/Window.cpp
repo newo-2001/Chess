@@ -78,6 +78,12 @@ glm::ivec2 Window::GetDimensions() const
     return dimensions;
 }
 
+float Window::GetAspectRatio() const
+{
+    glm::ivec2 dimensions = GetViewportDimensions();
+    return (float) dimensions.x / dimensions.y;
+}
+
 glm::ivec2 Window::GetViewportDimensions() const
 {
     GLint viewport[4];

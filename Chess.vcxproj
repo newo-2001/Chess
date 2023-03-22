@@ -19,9 +19,25 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\Debug\Rendering.cpp" />
+    <ClCompile Include="src\Core\Animations\AnimatedObject.cpp" />
+    <ClCompile Include="src\Core\Animations\Animator.cpp" />
+    <ClCompile Include="src\Core\Animations\Animation.cpp" />
+    <ClCompile Include="src\Core\Debug\Logging.cpp" />
+    <ClCompile Include="src\Core\Physics\Geometry\FinitePlane.cpp" />
+    <ClCompile Include="src\Core\Physics\Ray.cpp" />
+    <ClCompile Include="src\Core\Physics\Geometry\Plane.cpp" />
+    <ClCompile Include="src\Game\Entities\Bishop.cpp" />
+    <ClCompile Include="src\Game\Entities\Queen.cpp" />
+    <ClCompile Include="src\Game\Entities\Rook.cpp" />
+    <ClCompile Include="src\Game\Entities\King.cpp" />
+    <ClCompile Include="src\Game\Entities\Knight.cpp" />
+    <ClCompile Include="src\Game\Libraries\Models.cpp" />
+    <ClCompile Include="src\Game\Entities\Pawn.cpp" />
+    <ClCompile Include="src\Game\Entities\Piece.cpp" />
     <ClCompile Include="src\Core\Input\RotatableCamera.cpp" />
     <ClCompile Include="src\Game\Entities\Board.cpp" />
-    <ClCompile Include="src\Core\Rendering\Primitives\Cube.cpp" />
+    <ClCompile Include="src\Core\Physics\Geometry\Cube.cpp" />
     <ClCompile Include="src\Core\Input\MovableCamera.cpp" />
     <ClCompile Include="src\Core\Rendering\Lighting\DirectionalLight.cpp" />
     <ClCompile Include="src\Core\Rendering\Lighting\LightSource.cpp" />
@@ -36,7 +52,7 @@
     <ClCompile Include="src\Core\Time.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\Game\Main.cpp" />
-    <ClCompile Include="src\Game\Materials.cpp" />
+    <ClCompile Include="src\Game\Libraries\Materials.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -53,11 +69,29 @@
     </ClCompile>
     <ClCompile Include="src\Core\Rendering\Window.cpp" />
     <ClCompile Include="src\Core\Rendering\Texture.cpp" />
+    <ClCompile Include="src\Game\Libraries\Textures.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core\Debug\Rendering.h" />
+    <ClInclude Include="src\Core\Debug\Logging.h" />
+    <ClInclude Include="src\Core\Animations\AnimatedObject.h" />
+    <ClInclude Include="src\Core\Animations\Animator.h" />
+    <ClInclude Include="src\Core\Animations\KeyFrame.h" />
+    <ClInclude Include="src\Core\Animations\Animation.h" />
+    <ClInclude Include="src\Core\Physics\Geometry\FinitePlane.h" />
+    <ClInclude Include="src\Core\Physics\Ray.h" />
+    <ClInclude Include="src\Core\Physics\Geometry\Plane.h" />
+    <ClInclude Include="src\Game\Entities\Bishop.h" />
+    <ClInclude Include="src\Game\Entities\Queen.h" />
+    <ClInclude Include="src\Game\Entities\Rook.h" />
+    <ClInclude Include="src\Game\Entities\King.h" />
+    <ClInclude Include="src\Game\Entities\Knight.h" />
+    <ClInclude Include="src\Game\Libraries\Models.h" />
+    <ClInclude Include="src\Game\Entities\Pawn.h" />
+    <ClInclude Include="src\Game\Entities\Piece.h" />
     <ClInclude Include="src\Core\Input\RotatableCamera.h" />
     <ClInclude Include="src\Game\Entities\Board.h" />
-    <ClInclude Include="src\Core\Rendering\Primitives\Cube.h" />
+    <ClInclude Include="src\Core\Physics\Geometry\Cube.h" />
     <ClInclude Include="src\Core\Input\MovableCamera.h" />
     <ClInclude Include="src\Core\Rendering\Lighting\DirectionalLight.h" />
     <ClInclude Include="src\Core\Rendering\Lighting\LightSource.h" />
@@ -75,12 +109,15 @@
     <ClInclude Include="src\Core\Rendering\stbi.h" />
     <ClInclude Include="src\Core\Time.h" />
     <ClInclude Include="src\Game\Game.h" />
-    <ClInclude Include="src\Game\Materials.h" />
+    <ClInclude Include="src\Game\Libraries\Materials.h" />
     <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\Core\Rendering\Window.h" />
     <ClInclude Include="src\Core\Rendering\Texture.h" />
+    <ClInclude Include="src\Game\Libraries\Textures.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="resources\shaders\debug.fragment.glsl" />
+    <None Include="resources\shaders\debug.vertex.glsl" />
     <None Include="resources\shaders\fragment.glsl" />
     <None Include="resources\shaders\vertex.glsl" />
   </ItemGroup>

@@ -5,14 +5,19 @@
 #include <Core/Rendering/Model.h>
 #include <Core/Time.h>
 #include <Core/Input/MovableCamera.h>
-#include <Core/Rendering/Primitives/Cube.h>
+#include <Core/Physics/Geometry/Cube.h>
 #include "Entities/Board.h"
 #include <Core/Input/RotatableCamera.h>
+#include "Libraries/Models.h"
+#include "Libraries/Textures.h"
+#include "Libraries/Materials.h"
+#include <Core/Debug/Rendering.h>
 
 Window window({ 1366, 768 }, "Chess");
 Scene scene;
 
 Window& Game::GetWindow() { return window; }
+Scene& Game::GetActiveScene() { return scene; }
 
 void Update()
 {
@@ -30,6 +35,10 @@ void Render()
 
 void Initialize()
 {
+    Textures::Load();
+    Models::Load();
+    Debug::Initialize();
+
     std::shared_ptr<Camera> camera = std::make_shared<RotatableCamera>(glm::vec3(0.0f, 0.0f, 0.0f), 5.0f, 90.0f);
     scene.UseCamera(camera);
 
@@ -46,19 +55,15 @@ void Initialize()
 
     scene.AddLight("directionalLight", directionalLight);
     
-    std::shared_ptr<Material> dull = std::make_shared<Material>(0.3f, 4.0f);
-    std::shared_ptr<Material> shiny = std::make_shared<Material>(1.0f, 256.0f);
-
     std::shared_ptr<Texture> plain = std::make_shared<Texture>("resources/textures/plain.png", true);
     
-    Board::Load();
     std::shared_ptr<GameObject> board = std::make_shared<Board>();
-    scene.AddObject(board);
+    scene.AddObject("board", board);
 
-    /*glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3());
+    /*glm::mat4 model = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f));
     std::shared_ptr<Renderable> cubeMesh = std::make_shared<Cube>();
-    std::shared_ptr<GameObject> lightSource = std::make_shared<GameObject>(cubeMesh, model, plain, shiny);
-    scene.AddObject(lightSource);*/
+    std::shared_ptr<GameObject> origin = std::make_shared<GameObject>(cubeMesh, model, plain, Materials::Dull);
+    scene.AddObject("cube", origin);*/
 }
 
 void Game::Run()

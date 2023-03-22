@@ -14,6 +14,7 @@ public:
     void Resize(glm::ivec2 dimensions);
     void SetPosition(glm::ivec2 position);
 
+    float GetAspectRatio() const;
     void SetViewport(glm::ivec2 dimensions, glm::ivec2 bottomLeft = { 0, 0 });
     glm::ivec2 GetViewportDimensions() const;
 

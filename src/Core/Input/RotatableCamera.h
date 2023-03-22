@@ -7,7 +7,8 @@
 class RotatableCamera : public Camera
 {
 public:
-    RotatableCamera(glm::vec3 center, float distance = 10.0f, float yaw = 0.0f, float pitch = -20.0f, float fov = 90.0f);
+    RotatableCamera(glm::vec3 center, float distance = 10.0f, float yaw = 0.0f, float pitch = -20.0f,
+                    float fov = 90.0f, float near = 0.1f, float far = 100.0f);
     ~RotatableCamera();
 private:
     glm::vec3 m_center;

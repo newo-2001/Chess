@@ -15,7 +15,7 @@ Mesh::Mesh(const GLfloat* const vertices, size_t vertexCount, const unsigned int
 
     glGenBuffers(1, &m_VBO);
     glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * STRIDE * vertexCount, vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, STRIDE * vertexCount, vertices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, STRIDE, 0);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, STRIDE, (void*) (sizeof(GLfloat) * 3));

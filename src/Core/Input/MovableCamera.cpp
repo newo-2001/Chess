@@ -4,7 +4,9 @@
 #include "InputHandler.h"
 #include <numbers>
 
-MovableCamera::MovableCamera(glm::vec3 position, float yaw, float pitch, float fov) : Camera(position, yaw, pitch, fov)
+MovableCamera::MovableCamera(glm::vec3 position, float yaw, float pitch,
+                             float fov, float near, float far) :
+    Camera(position, yaw, pitch, fov, near, far)
 {
     Window& window = Game::GetWindow();
     InputHandler& inputHandler = window.GetInputHandler();

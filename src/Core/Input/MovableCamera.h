@@ -7,7 +7,8 @@
 class MovableCamera : public Camera
 {
 public:
-    MovableCamera(glm::vec3 position = glm::vec3(), float yaw = 0.0f, float pitch = 0.0f, float fov = 90.0f);
+    MovableCamera(glm::vec3 position = glm::vec3(), float yaw = 0.0f, float pitch = 0.0f,
+                  float fov = 90.0f, float near = 0.1f, float far = 100.0f);
     ~MovableCamera();
 
     void SetMovementSpeed(float speed) { m_movementSpeed = speed; }

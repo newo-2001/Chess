@@ -11,6 +11,7 @@ public:
     InputHandler();
     bool IsKeyPressed(int key) const { return m_pressedKeys[key]; }
     bool IsButtonPressed(int button) const { return m_pressedButtons[button]; }
+    glm::ivec2 GetMousePosition() const { return m_mousePosition; }
 
     void ReleaseAll();
 
@@ -21,4 +22,5 @@ public:
 private:
     std::array<bool, 1024> m_pressedKeys = { false };
     std::array<bool, 24> m_pressedButtons = { false };
+    glm::ivec2 m_mousePosition = glm::ivec2();
 };

@@ -80,7 +80,7 @@ void Shader::AttachShader(GLenum shaderType, const std::string& filePath)
     {
         CompileShader(shader, shaderType);
     }
-    catch (std::exception& e)
+    catch (...)
     {
         glDeleteShader(shader);
         std::throw_with_nested(std::runtime_error(std::format("Failed to compile shader '{}'", filePath)));

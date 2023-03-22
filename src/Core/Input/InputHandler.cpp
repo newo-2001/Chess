@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "InputHandler.h"
+#include <Core/Rendering/Window.h>
 
 InputHandler::InputHandler()
 {
@@ -27,6 +28,10 @@ InputHandler::InputHandler()
         }
     });
 
+    OnMouseMoveEvent.Subscribe([this](MouseMoveEvent event) -> void
+    {
+        m_mousePosition = event.current;
+    });
 }
 
 void InputHandler::ReleaseAll()

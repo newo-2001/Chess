@@ -3,10 +3,11 @@
 #include <Game/Game.h>
 #include <Core/Time.h>
 
-RotatableCamera::RotatableCamera(glm::vec3 center, float distance, float yaw, float pitch, float fov) :
+RotatableCamera::RotatableCamera(glm::vec3 center, float distance, float yaw, float pitch,
+                                 float fov, float near, float far) :
     m_center(center),
     m_distance(distance),
-    Camera(glm::vec3(), yaw, pitch, fov)
+    Camera(glm::vec3(), yaw, pitch, fov, near, far)
 {
     InputHandler& inputHandler = Game::GetWindow().GetInputHandler();
 

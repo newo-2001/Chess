@@ -1,14 +1,20 @@
 #include "pch.h"
 #include "Scene.h"
 
-void Scene::AddObject(std::shared_ptr<GameObject>& object)
+void Scene::AddObject(std::string name, std::shared_ptr<GameObject>& object)
 {
-    m_objects.push_back(object);
+    m_objects.insert({ name, object });
 }
 
 void Scene::AddLight(std::string name, std::shared_ptr<LightSource>& light)
 {
     m_lights.insert({ name, light });
+}
+
+std::optional<std::shared_ptr<GameObject>> Scene::GetObject(const std::string& name) const
+{
+    auto it = m_objects.find(name);
+    return it != m_objects.end() ? std::make_optional(it->second) : std::nullopt;
 }
 
 void Scene::Render() const
@@ -34,8 +40,8 @@ void Scene::Render() const
 
 void Scene::RenderScene(Shader& shader) const
 {
-    for (const std::shared_ptr<GameObject>& object : m_objects)
+    for (const auto object : m_objects)
     {
-        object->Render(shader);
+        object.second->Render(shader);
     }
 }

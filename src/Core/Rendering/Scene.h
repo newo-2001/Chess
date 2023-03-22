@@ -16,7 +16,9 @@ public:
 
     Camera& GetCamera() const { return *m_camera; }
 
-    void AddObject(std::shared_ptr<GameObject>& object);
+    std::optional<std::shared_ptr<GameObject>> GetObject(const std::string& name) const;
+
+    void AddObject(std::string name, std::shared_ptr<GameObject>& object);
     void AddLight(std::string name, std::shared_ptr<LightSource>& light);
 
     Shader& GetActiveShader() const { return *m_shader; }
@@ -24,9 +26,8 @@ private:
     std::shared_ptr<Shader> m_shader;
     std::shared_ptr<Camera> m_camera;
 
-    std::vector<std::shared_ptr<GameObject>> m_objects;
+    std::map<std::string, std::shared_ptr<GameObject>> m_objects;
     std::unordered_map<std::string, std::shared_ptr<LightSource>> m_lights;
 
     void RenderScene(Shader& shader) const;
 };
-

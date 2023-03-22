@@ -95,6 +95,7 @@ void Model::LoadMaterials(const aiScene* scene)
 
     m_textures.resize(scene->mNumMaterials);
 
+
     for (size_t i = 0; i < scene->mNumMaterials; i++)
     {
         const aiMaterial& material = *scene->mMaterials[i];

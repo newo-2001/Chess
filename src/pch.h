@@ -6,13 +6,16 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/ext/matrix_transform.hpp>
+#include <glm/vector_relational.hpp>
 
 #include <vector>
 #include <array>
 #include <string>
 #include <unordered_map>
+#include <map>
 
 #include <functional>
+#include <optional>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
