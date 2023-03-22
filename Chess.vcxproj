@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Game\GameState.cpp" />
     <ClCompile Include="src\Core\Debug\Rendering.cpp" />
     <ClCompile Include="src\Core\Animations\AnimatedObject.cpp" />
     <ClCompile Include="src\Core\Animations\Animator.cpp" />
@@ -72,6 +73,7 @@
     <ClCompile Include="src\Game\Libraries\Textures.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Game\GameState.h" />
     <ClInclude Include="src\Core\Debug\Rendering.h" />
     <ClInclude Include="src\Core\Debug\Logging.h" />
     <ClInclude Include="src\Core\Animations\AnimatedObject.h" />

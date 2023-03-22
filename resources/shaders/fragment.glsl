@@ -26,12 +26,23 @@ struct DirectionalLight
     vec3 direction;
 };
 
+struct Highlight
+{
+    vec3 color;
+    vec2 location;
+};
+
 uniform sampler2D tex;
 
 uniform Material material;
 uniform vec3 cameraPos;
 
 uniform DirectionalLight directionalLight;
+
+const int MAX_HIGHLIGHTS = 2;
+
+uniform int highlightCount;
+uniform Highlight highlights[MAX_HIGHLIGHTS];
 
 vec4 CalcLightByDirection(Light light, vec3 direction)
 {
@@ -63,10 +74,38 @@ vec4 CalcDirectionalLight()
     return CalcLightByDirection(directionalLight.base, directionalLight.direction);
 }
 
+vec4 CalcHighlightColor(Highlight highlight)
+{
+    vec4 edge = abs(vec4(FragPos.xz - highlight.location, FragPos.xz - highlight.location - vec2(1)));
+    
+    const float DISTANCE = 0.1;
+    float factor = max(0.001, min(min(min(edge.x, edge.y), edge.z), edge.w));
+
+    if (factor > DISTANCE || edge.x > 1 || edge.y > 1 || edge.z > 1 || edge.w > 1)
+    {
+        return vec4(0);
+    }
+
+    return vec4(highlight.color * (1 - factor / DISTANCE), 1.0);
+}
+
+vec4 CalcHighlightColors()
+{
+    vec4 total = vec4(0);
+    
+    for (int i = 0; i < highlightCount; i++)
+    {
+        total += CalcHighlightColor(highlights[i]);
+    }
+    
+    return total;
+}
+
 void main()
 {
     vec4 lightColor = CalcDirectionalLight();
     vec4 textureColor = texture(tex, TexCoord);
+    vec4 highlightColor = CalcHighlightColors();
 
-    color = vec4(material.color, 1.0) * textureColor * lightColor;
+    color = vec4(material.color, 1.0) * textureColor * lightColor + highlightColor;
 }

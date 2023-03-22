@@ -22,6 +22,8 @@ void Board::Render(Shader& shader) const
     Window& window = Game::GetWindow();
     Camera& camera = Game::GetActiveScene().GetCamera();
     
+    int highlights = 0;
+
     if (!window.CursorIsGrabbed())
     {
         Ray ray = camera.CastMouseRay();
@@ -29,13 +31,29 @@ void Board::Render(Shader& shader) const
 
         if (result.has_value())
         {
-            glm::vec3 intersection = result.value() - m_hitBox.GetPoint();
+            glm::vec3 intersection = result.value();
             glm::vec2 square = glm::floor(glm::vec2(intersection.x, intersection.z));
-            std::cout << square << std::endl;
 
-            std::shared_ptr<GameObject> object = Game::GetActiveScene().GetObject("cube").value();
+            shader.SetUniform(Uniform<glm::vec2> { "highlights[0].location", square });
+            shader.SetUniform(Uniform<glm::vec3> { "highlights[0].color", glm::vec3(1.0f) });
+            highlights++;
         }
+        
     }
+
+    GameState& state = Game::GetState();
+    std::optional<glm::ivec2> selected = state.GetSelectedSquare();
+    if (selected.has_value())
+    {
+        std::string uniform = std::format("highlights[{}]", highlights);
+        glm::vec2 selectedSquare = glm::vec2(selected.value() - glm::ivec2(4));
+
+        shader.SetUniform(Uniform<glm::vec2> { uniform + ".location", selectedSquare });
+        shader.SetUniform(Uniform<glm::vec3> { uniform + ".color", glm::vec3 { 0.9f, 0.8f, 0.3f }});
+        highlights++;
+    }
+    
+    shader.SetUniform(Uniform<int> { "highlightCount", highlights });
     
     GameObject::Render(shader);
     //m_hitBoxObject->Render(shader);

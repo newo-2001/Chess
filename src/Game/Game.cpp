@@ -12,12 +12,15 @@
 #include "Libraries/Textures.h"
 #include "Libraries/Materials.h"
 #include <Core/Debug/Rendering.h>
+#include "GameState.h"
 
+std::shared_ptr<GameState> state;
 Window window({ 1366, 768 }, "Chess");
 Scene scene;
 
 Window& Game::GetWindow() { return window; }
 Scene& Game::GetActiveScene() { return scene; }
+GameState& Game::GetState() { return *state; }
 
 void Update()
 {
@@ -57,9 +60,12 @@ void Initialize()
     
     std::shared_ptr<Texture> plain = std::make_shared<Texture>("resources/textures/plain.png", true);
     
-    std::shared_ptr<GameObject> board = std::make_shared<Board>();
-    scene.AddObject("board", board);
+    std::shared_ptr<Board> board = std::make_shared<Board>();
+    std::shared_ptr<GameObject> boardObject = board;
+    scene.AddObject("board", boardObject);
 
+    state = std::make_unique<GameState>(board);
+    
     /*glm::mat4 model = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f));
     std::shared_ptr<Renderable> cubeMesh = std::make_shared<Cube>();
     std::shared_ptr<GameObject> origin = std::make_shared<GameObject>(cubeMesh, model, plain, Materials::Dull);

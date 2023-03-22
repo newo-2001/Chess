@@ -150,6 +150,13 @@ void Shader::SetUniform<glm::vec3>(Uniform<glm::vec3> uniform)
 }
 
 template<>
+void Shader::SetUniform<glm::vec2>(Uniform<glm::vec2> uniform)
+{
+    GLint location = GetUniformLocation(uniform.Name);
+    glUniform2fv(location, 1, glm::value_ptr(uniform.Value));
+}
+
+template<>
 void Shader::SetUniform<float>(Uniform<float> uniform)
 {
     GLint location = GetUniformLocation(uniform.Name);

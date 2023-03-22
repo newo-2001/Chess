@@ -16,6 +16,8 @@ public:
     void Render(Shader& shader) const;
     void MovePiece(glm::ivec2 from, glm::ivec2 to);
 
+    FinitePlane GetHitBox() const { return m_hitBox; }
+
     std::unique_ptr<Piece>& PieceAt(glm::ivec2 pos) { return m_pieces[pos.x][pos.y]; }
     const std::unique_ptr<Piece>& PieceAt(glm::ivec2 pos) const { return m_pieces[pos.x][pos.y]; }
 private:
