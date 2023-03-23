@@ -9,3 +9,9 @@ Knight::Knight(Color color, glm::vec3 position) :
         glm::vec3 { 0.0f, 1.0f, 0.0f }
     ))
 { }
+
+void Knight::SetTransform(glm::mat4 transform)
+{
+    float angle = glm::radians(90.0f) * (m_color == White ? 1 : -1);
+    Piece::SetTransform(glm::rotate(transform, angle, glm::vec3 { 0.0f, 1.0f, 0.0f }));
+}

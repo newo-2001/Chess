@@ -13,3 +13,8 @@ Piece::Piece(std::shared_ptr<Renderable>& model, Color color, glm::mat4 transfor
                color == White ? Materials::White : Materials::Black),
     m_color(color)
 { }
+
+void Piece::SetTransform(glm::mat4 transform)
+{
+    GameObject::SetTransform(glm::scale(transform, glm::vec3(0.002f)));
+}

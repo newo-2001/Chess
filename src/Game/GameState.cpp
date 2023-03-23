@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "GameState.h"
 #include "Game.h"
+#include <Core/Debug/Logging.h>
+
 
 GameState::GameState(std::shared_ptr<Board> board) :
     m_board(board)
@@ -14,24 +16,62 @@ GameState::GameState(std::shared_ptr<Board> board) :
 
 void GameState::OnMouseButtonEvent(MouseButtonEvent event)
 {
-    if (event.button == GLFW_MOUSE_BUTTON_RIGHT)
+    // If right mouse was clicked, remove selection
+    if (event.button == GLFW_MOUSE_BUTTON_RIGHT && event.action == GLFW_PRESS)
+    {
+        m_selectedSquare = std::nullopt;
+        return;
+    // Event was not left mouse press, not interested
+    } else if (event.action != GLFW_PRESS || event.button != GLFW_MOUSE_BUTTON_LEFT)
+    {
+        return;
+    }
+
+    // Cast ray to the clickd tile
+    Ray ray = Game::GetActiveScene().GetCamera().CastMouseRay();
+    std::optional<glm::vec3> result = ray.Intersect(m_board->GetHitBox());
+
+    // Ray missed, no square was clicked
+    if (!result.has_value())
     {
         m_selectedSquare = std::nullopt;
         return;
     }
-    else if (event.button == GLFW_MOUSE_BUTTON_LEFT)
-    {
-        Ray ray = Game::GetActiveScene().GetCamera().CastMouseRay();
+    
+    // Calculate tile position from world position
+    glm::vec3 location = glm::floor(result.value());
+    glm::ivec2 target = glm::ivec2(location.z, location.x) + glm::ivec2(4);
+    std::cout << target << std::endl;
 
-        std::optional<glm::vec3> result = ray.Intersect(m_board->GetHitBox());
-        if (!result.has_value())
+    // If no square was selected, selected the clicked square
+    if (!m_selectedSquare)
+    {
+        // You can't select an empty tile to move from
+        // Piece has to be your own color
+        std::unique_ptr<Piece>& piece = m_board->PieceAt(target);
+        if (!piece || piece->GetColor() != m_playerColor)
         {
-            m_selectedSquare = std::nullopt;
+            return;
         }
-        else
-        {
-            glm::vec3 location = glm::floor(result.value());
-            m_selectedSquare = glm::ivec2(location.x, location.z) + glm::ivec2(4);
-        }
+
+        m_selectedSquare = target;
+        return;
+    // If the currently selected square was clicked, deselect it
+    } else if (glm::all(glm::equal(m_selectedSquare.value(), target)))
+    {
+        m_selectedSquare = std::nullopt;
+        return;
     }
+    
+    try
+    {
+        // Attempt to perform the move
+        m_board->MovePiece(m_selectedSquare.value(), target);
+    }
+    catch (std::runtime_error e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+
+    m_selectedSquare = std::nullopt;
 }

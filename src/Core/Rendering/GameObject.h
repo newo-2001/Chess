@@ -13,7 +13,7 @@ public:
 
     virtual void Render(Shader& shader) const;
 
-    void SetTransform(glm::mat4 transform) { m_transform = transform; }
+    virtual void SetTransform(glm::mat4 transform) { m_transform = transform; }
     glm::mat4 GetTransform() const { return m_transform; }
 protected:
     std::shared_ptr<Renderable> m_renderable;

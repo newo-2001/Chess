@@ -25,8 +25,8 @@ public:
 
     FinitePlane GetHitBox() const { return m_hitBox; }
 
-    std::unique_ptr<Piece>& PieceAt(glm::ivec2 pos) { return m_pieces[pos.x][pos.y]; }
-    const std::unique_ptr<Piece>& PieceAt(glm::ivec2 pos) const { return m_pieces[pos.x][pos.y]; }
+    std::unique_ptr<Piece>& PieceAt(glm::ivec2 pos) { return m_pieces[pos.y][pos.x]; }
+    const std::unique_ptr<Piece>& PieceAt(glm::ivec2 pos) const { return m_pieces[pos.y][pos.x]; }
 private:
     FinitePlane m_hitBox;
     std::unique_ptr<GameObject> m_hitBoxObject;

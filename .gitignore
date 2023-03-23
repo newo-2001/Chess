@@ -1,6 +1,7 @@
 *.user
 *.dll
 *.cap
+*.exe
 
 .vs
 .vscode

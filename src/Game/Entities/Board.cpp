@@ -35,7 +35,7 @@ template<typename T>
 void Board::PlacePiece(Color color, glm::ivec2 pos)
 {
     glm::vec3 worldPos = ToWorld(glm::vec2(pos) + 0.5f);
-    m_pieces[pos.x][pos.y] = std::move(std::make_unique<T>(color, worldPos));
+    m_pieces[pos.y][pos.x] = std::move(std::make_unique<T>(color, worldPos));
 }
 
 void Board::SetStartingPosition()
@@ -90,7 +90,7 @@ void Board::Render(Shader& shader) const
     if (selected.has_value())
     {
         std::string uniform = std::format("highlights[{}]", highlights);
-        glm::vec2 selectedSquare = glm::vec2(selected.value() - glm::ivec2(4));
+        glm::vec2 selectedSquare = glm::vec2(selected.value().y, selected.value().x) - glm::vec2(4.0f);
 
         shader.SetUniform(Uniform<glm::vec2> { uniform + ".location", selectedSquare });
         shader.SetUniform(Uniform<glm::vec3> { uniform + ".color", glm::vec3 { 0.9f, 0.8f, 0.3f }});
@@ -126,6 +126,13 @@ void Board::MovePiece(glm::ivec2 from, glm::ivec2 to)
         throw std::runtime_error("Can't move piece from an empty square");
     }
 
-    piece->SetTransform(glm::translate(m_transform, glm::vec3(to.x, 0.0f, to.y)));
-    piece.swap(m_pieces[to.x][to.y]);
+    piece->SetTransform(glm::translate(glm::mat4(1.0f), ToWorld(glm::vec2(to) + 0.5f)));
+    
+    std::unique_ptr<Piece>& target = PieceAt(to);
+    if (target)
+    {
+        target.reset();
+    }
+
+    piece.swap(target);
 }

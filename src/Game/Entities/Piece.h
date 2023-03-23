@@ -10,6 +10,10 @@ enum Color
 
 class Piece : public GameObject
 {
+public:
+    Color GetColor() const { return m_color; }
+
+    virtual void SetTransform(glm::mat4 transform);
 protected:
     Color m_color;
 
