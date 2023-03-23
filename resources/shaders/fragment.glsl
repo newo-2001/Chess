@@ -79,7 +79,7 @@ vec4 CalcHighlightColor(Highlight highlight)
     vec4 edge = abs(vec4(FragPos.xz - highlight.location, FragPos.xz - highlight.location - vec2(1)));
     
     const float DISTANCE = 0.1;
-    float factor = max(0.001, min(min(min(edge.x, edge.y), edge.z), edge.w));
+    float factor = min(min(min(edge.x, edge.y), edge.z), edge.w);
 
     if (factor > DISTANCE || edge.x > 1 || edge.y > 1 || edge.z > 1 || edge.w > 1)
     {

@@ -15,7 +15,10 @@ std::optional<glm::vec3> Ray::Intersect(Plane plane) const
 
     float scale = glm::dot(rayToPlane, normal) / glm::dot(delta, normal);
 
-    if (scale < 0 || scale > 1) return std::nullopt;
+    if (scale < 0 || scale > 1)
+    {
+        return std::nullopt;
+    }
     
     return m_start + scale * delta;
 }
@@ -25,14 +28,14 @@ std::optional<glm::vec3> Ray::Intersect(FinitePlane plane) const
     std::optional<glm::vec3> intersection = Intersect((Plane) plane);
 
     if (!intersection.has_value()) return std::nullopt;
+    
+    glm::vec2 hit = plane.ProjectPoint(intersection.value());
+    glm::vec2 dimensions = plane.GetDimensions();
 
-    glm::vec3 point = intersection.value();
-    glm::vec3 bottomLeft = plane.GetPoint();
-    glm::vec3 topRight = plane.GetDimensions() * plane.FromLocal() + bottomLeft;
-   
-    return (point.x >= bottomLeft.x && point.y >= bottomLeft.y && point.z >= bottomLeft.z &&
-            point.x <= topRight.x && point.y <= topRight.y && point.z <= topRight.z)
+    return hit.x >= 0 && hit.y >= 0 && hit.x <= dimensions.x && hit.y <= dimensions.y
         ? intersection : std::nullopt;
-
-    return std::nullopt;
+   
+    /*return (point.x >= bottomLeft.x && point.y >= bottomLeft.y && point.z >= bottomLeft.z &&
+            point.x <= topRight.x && point.y <= topRight.y && point.z <= topRight.z)
+        ? intersection : std::nullopt;*/
 }

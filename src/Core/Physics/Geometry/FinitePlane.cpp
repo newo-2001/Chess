@@ -9,7 +9,7 @@ FinitePlane::FinitePlane(glm::vec3 position, glm::vec2 dimensions, glm::vec3 nor
 
 std::unique_ptr<Mesh> FinitePlane::CreateMesh() const
 {
-    glm::mat3x2 basis = FromLocal();
+    glm::mat3x2 basis = GetBasis();
 
     const glm::vec3& normal = m_normal;
 
@@ -38,4 +38,9 @@ std::unique_ptr<Mesh> FinitePlane::CreateMesh() const
     }
 
     return std::make_unique<Mesh>(vertices, 4, indices, 6);
+}
+
+glm::vec2 FinitePlane::ProjectPoint(glm::vec3 point) const
+{
+    return Plane::ProjectPoint(point - m_point);
 }

@@ -11,6 +11,8 @@ public:
     float GetRotation() const { return m_rotation; }
 
     std::unique_ptr<Mesh> CreateMesh() const;
+
+    glm::vec2 ProjectPoint(glm::vec3 point) const;
 private:
     glm::vec2 m_dimensions;
     float m_rotation;
