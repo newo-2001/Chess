@@ -40,6 +40,9 @@
     <ClCompile Include="src\Core\Debug\Logging.cpp" />
     <ClCompile Include="src\Core\Debug\Rendering.cpp" />
     <ClCompile Include="src\Game\GameState.cpp" />
+    <ClCompile Include="src\Game\Engine\Stockfish.cpp" />
+    <ClCompile Include="src\Game\Move.cpp" />
+    <ClCompile Include="src\Game\Engine\BufferedReader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch.h" />
@@ -85,6 +88,9 @@
     <ClInclude Include="src\Core\Debug\Logging.h" />
     <ClInclude Include="src\Core\Debug\Rendering.h" />
     <ClInclude Include="src\Game\GameState.h" />
+    <ClInclude Include="src\Game\Engine\Stockfish.h" />
+    <ClInclude Include="src\Game\Move.h" />
+    <ClInclude Include="src\Game\Engine\BufferedReader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\vertex.glsl" />

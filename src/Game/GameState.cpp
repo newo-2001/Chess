@@ -65,8 +65,25 @@ void GameState::OnMouseButtonEvent(MouseButtonEvent event)
     
     try
     {
+        Stockfish& stockfish = Game::GetStockfish();
+        Move move = { m_selectedSquare.value(), target };
+
         // Attempt to perform the move
-        m_board->MovePiece(m_selectedSquare.value(), target);
+        if (!stockfish.IsValid(move))
+        {
+            std::cout << "Invalid move!" << std::endl;
+        }
+        else
+        {
+            m_board->MovePiece(m_selectedSquare.value(), target);
+            m_moves.push_back(move);
+            stockfish.SetState(m_moves);
+
+            move = stockfish.GetBestMove();
+            m_moves.push_back(move);
+            stockfish.SetState(m_moves);
+            m_board->MovePiece(move.From, move.To);
+        }
     }
     catch (std::runtime_error e)
     {

@@ -16,11 +16,13 @@
 
 std::shared_ptr<GameState> state;
 Window window({ 1366, 768 }, "Chess");
+Stockfish stockfish("stockfish.exe");
 Scene scene;
 
 Window& Game::GetWindow() { return window; }
 Scene& Game::GetActiveScene() { return scene; }
 GameState& Game::GetState() { return *state; }
+Stockfish& Game::GetStockfish() { return stockfish; }
 
 void Update()
 {
